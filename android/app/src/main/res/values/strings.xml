@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Multiplayer Tic Tac Toe</string>
+    <string name="facebook_app_id">618965974625866</string>
+    <string name="fb_login_protocol_scheme">fb618965974625866</string>
+    <string name="facebook_client_token">1dd11bd440a86a33426bff12777d2b35</string>
+</resources>
+<!-- 
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="facebook_app_id">1187649703134147</string>
+    <string name="fb_login_protocol_scheme">fb1187649703134147</string>
+    <string name="facebook_client_token">0dc00ab640bc5801b7e8f712f0b4f161</string>
+</resources> -->

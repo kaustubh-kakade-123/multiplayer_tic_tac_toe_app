@@ -1,0 +1,68 @@
+# ------------------------------
+# Miscellaneous
+# ------------------------------
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+
+# ------------------------------
+# IDE / Editors
+# ------------------------------
+*.iml
+*.ipr
+*.iws
+.idea/
+#.vscode/   # Uncomment if you want to ignore VS Code configs
+
+# ------------------------------
+# Flutter / Dart / Pub
+# ------------------------------
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+build/
+
+# ------------------------------
+# Symbolication & Obfuscation
+# ------------------------------
+app.*.symbols
+app.*.map.json
+
+# ------------------------------
+# Android
+# ------------------------------
+android/.gradle
+/android/app/debug
+/android/app/profile
+/android/app/release
+*.keystore
+
+# ------------------------------
+# iOS
+# ------------------------------
+ios/Flutter/Flutter.podspec
+ios/Pods/
+ios/Runner/GeneratedPluginRegistrant.*
+
+# ------------------------------
+# Local env / Secrets
+# ------------------------------
+.env
+.env.*
+secrets.json
+google-services.json
+GoogleService-Info.plist
