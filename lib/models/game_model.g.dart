@@ -6,27 +6,26 @@ part of 'game_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$GameModelImpl _$$GameModelImplFromJson(Map<String, dynamic> json) =>
-    _$GameModelImpl(
-      id: json['id'] as String,
-      player1Id: json['player1Id'] as String,
-      player2Id: json['player2Id'] as String?,
-      player1Name: json['player1Name'] as String,
-      player2Name: json['player2Name'] as String?,
-      board: (json['board'] as List<dynamic>)
-          .map((e) => (e as List<dynamic>).map((e) => e as String).toList())
-          .toList(),
-      currentTurn: $enumDecode(_$PlayerEnumMap, json['currentTurn']),
-      status: $enumDecode(_$GameStatusEnumMap, json['status']),
-      winnerId: json['winnerId'] as String?,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      completedAt: json['completedAt'] == null
-          ? null
-          : DateTime.parse(json['completedAt'] as String),
-      moveCount: (json['moveCount'] as num).toInt(),
-    );
+_GameModel _$GameModelFromJson(Map<String, dynamic> json) => _GameModel(
+  id: json['id'] as String,
+  player1Id: json['player1Id'] as String,
+  player2Id: json['player2Id'] as String?,
+  player1Name: json['player1Name'] as String,
+  player2Name: json['player2Name'] as String?,
+  board: (json['board'] as List<dynamic>)
+      .map((e) => (e as List<dynamic>).map((e) => e as String).toList())
+      .toList(),
+  currentTurn: $enumDecode(_$PlayerEnumMap, json['currentTurn']),
+  status: $enumDecode(_$GameStatusEnumMap, json['status']),
+  winnerId: json['winnerId'] as String?,
+  createdAt: DateTime.parse(json['createdAt'] as String),
+  completedAt: json['completedAt'] == null
+      ? null
+      : DateTime.parse(json['completedAt'] as String),
+  moveCount: (json['moveCount'] as num).toInt(),
+);
 
-Map<String, dynamic> _$$GameModelImplToJson(_$GameModelImpl instance) =>
+Map<String, dynamic> _$GameModelToJson(_GameModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'player1Id': instance.player1Id,

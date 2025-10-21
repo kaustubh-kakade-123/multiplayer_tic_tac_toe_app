@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:multiplayer_tic_tac_toe_app/core/services/auth_service.dart';
 import 'package:multiplayer_tic_tac_toe_app/core/services/game_service.dart';
 import '../../models/game_model.dart';
+import 'package:multiplayer_tic_tac_toe_app/viewmodels/game_viewmodel.dart';
 
 class GameView extends ConsumerWidget {
   final String gameId;
@@ -14,7 +15,7 @@ class GameView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final gameAsync = ref.watch(activeGameProvider(gameId));
-    final gameViewModel = ref.watch(gameViewModelProvider(gameId));
+    final gameViewModel = ref.watch(gameViewModelProvider);
     final currentUser = ref.watch(authServiceProvider).value;
 
     return Scaffold(
@@ -53,7 +54,7 @@ class GameView extends ConsumerWidget {
     WidgetRef ref,
     GameModel game,
     User? currentUser,
-    AsyncValue<String?> gameViewModel,
+    AsyncValue<void> gameViewModel,
   ) {
     final isPlayer1 = currentUser?.uid == game.player1Id;
     final isPlayer2 = currentUser?.uid == game.player2Id;
@@ -246,8 +247,8 @@ class GameView extends ConsumerWidget {
     return GestureDetector(
       onTap: canPlay && value.isEmpty
           ? () => ref
-                .read(gameViewModelProvider(gameId).notifier)
-                .makeMove(row, col)
+                .read(gameViewModelProvider.notifier)
+                .makeMove(gameId, row, col)
           : null,
       child: Container(
         decoration: BoxDecoration(
@@ -355,7 +356,7 @@ class GameView extends ConsumerWidget {
           ElevatedButton(
             onPressed: () {
               Navigator.pop(context);
-              ref.read(gameViewModelProvider(gameId).notifier).abandonGame();
+              ref.read(gameViewModelProvider.notifier).abandonGame(gameId);
               Navigator.pop(context);
             },
             style: ElevatedButton.styleFrom(backgroundColor: Colors.red),

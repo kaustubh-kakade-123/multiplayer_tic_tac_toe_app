@@ -355,6 +355,8 @@ class GameService {
             // Convert flat board to 2D for GameModel
             final data = doc.data();
             final flatBoard = List<String>.from(data['board']);
+
+            //Convert flat array into 2D array
             data['board'] = _boardTo2D(flatBoard);
 
             return game_model.GameModel.fromJson(data);
@@ -394,43 +396,6 @@ class GameService {
       print('Cleaned up corrupted games');
     } catch (e) {
       print('Error cleaning up games: $e');
-    }
-  }
-}
-
-// Game View Model
-final gameViewModelProvider =
-    StateNotifierProvider.family<GameViewModel, AsyncValue<String?>, String>((
-      ref,
-      gameId,
-    ) {
-      return GameViewModel(ref.read(gameServiceProvider), gameId);
-    });
-
-class GameViewModel extends StateNotifier<AsyncValue<String?>> {
-  GameViewModel(this._gameService, this.gameId)
-    : super(const AsyncValue.data(null));
-
-  final GameService _gameService;
-  final String gameId;
-
-  Future<void> makeMove(int row, int col) async {
-    state = const AsyncValue.loading();
-    try {
-      await _gameService.makeMove(gameId, row, col);
-      state = const AsyncValue.data('Move made successfully');
-    } catch (e) {
-      state = AsyncValue.error(e.toString(), StackTrace.current);
-    }
-  }
-
-  Future<void> abandonGame() async {
-    state = const AsyncValue.loading();
-    try {
-      await _gameService.abandonGame(gameId);
-      state = const AsyncValue.data('Game abandoned');
-    } catch (e) {
-      state = AsyncValue.error(e.toString(), StackTrace.current);
     }
   }
 }

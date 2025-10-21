@@ -11,7 +11,7 @@ enum GameStatus { waiting, inProgress, completed, abandoned }
 enum Player { x, o }
 
 @freezed
-class GameModel with _$GameModel {
+abstract class GameModel with _$GameModel {
   const factory GameModel({
     required String id,
     required String player1Id,

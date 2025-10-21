@@ -5,7 +5,7 @@ part 'score_model.freezed.dart';
 part 'score_model.g.dart';
 
 @freezed
-class ScoreModel with _$ScoreModel {
+abstract class ScoreModel with _$ScoreModel {
   const factory ScoreModel({
     required String userId,
     required String displayName,

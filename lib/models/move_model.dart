@@ -8,7 +8,7 @@ part 'move_model.g.dart';
 enum Player { x, o }
 
 @freezed
-class MoveModel with _$MoveModel {
+abstract class MoveModel with _$MoveModel {
   const factory MoveModel({
     required String gameId,
     required String playerId,

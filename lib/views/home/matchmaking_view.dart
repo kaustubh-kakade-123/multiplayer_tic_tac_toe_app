@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:multiplayer_tic_tac_toe_app/core/services/game_service.dart';
-import 'package:multiplayer_tic_tac_toe_app/core/services/matchmaking_service.dart';
 import 'package:multiplayer_tic_tac_toe_app/core/services/score_service.dart';
+import 'package:multiplayer_tic_tac_toe_app/viewmodels/matchmaking_viewmodel.dart';
 import 'package:multiplayer_tic_tac_toe_app/models/game_model.dart';
 import 'package:multiplayer_tic_tac_toe_app/models/score_model.dart';
 import 'package:multiplayer_tic_tac_toe_app/views/home/game_view.dart';

@@ -1,17 +1,20 @@
 // lib/viewmodels/auth_viewmodel.dart
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../core/services/auth_service.dart';
 
-// View Model for Authentication
-final authViewModelProvider =
-    StateNotifierProvider<AuthViewModel, AsyncValue<String?>>((ref) {
-      return AuthViewModel(ref.read(authRepositoryProvider));
-    });
+part 'auth_viewmodel.g.dart';
 
-class AuthViewModel extends StateNotifier<AsyncValue<String?>> {
-  AuthViewModel(this._authRepository) : super(const AsyncValue.data(null));
+@riverpod
+class AuthViewModel extends _$AuthViewModel {
+  @override
+  AsyncValue<String?> build() {
+    // Keep this provider alive while the app is running to avoid using a disposed ref
+    ref.keepAlive();
+    return const AsyncValue.data(null);
+  }
 
-  final AuthRepository _authRepository;
+  AuthRepository get _authRepository => ref.read(authRepositoryProvider);
 
   Future<void> signInWithEmail(String email, String password) async {
     state = const AsyncValue.loading();
