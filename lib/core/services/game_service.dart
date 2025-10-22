@@ -361,22 +361,25 @@ class GameService {
         .limit(10)
         .snapshots()
         .map((snapshot) {
-          return snapshot.docs.map((doc) {
-            // Convert flat board to 2D for GameModel
-            final data = doc.data();
-            final flatBoard = List<String>.from(data['board']);
+          return snapshot.docs
+              .map((doc) {
+                // Convert flat board to 2D for GameModel
+                final data = doc.data();
+                final flatBoard = List<String>.from(data['board']);
 
-            //Convert flat array into 2D array
-            data['board'] = _boardTo2D(flatBoard);
+                //Convert flat array into 2D array
+                data['board'] = _boardTo2D(flatBoard);
 
-            try {
-              return game_model.GameModel.fromJson(data);
-            } catch (e, st) {
-              print('Failed to deserialize available game ${doc.id}: $e');
-              print(st);
-              return null;
-            }
-          }).whereType<game_model.GameModel>().toList();
+                try {
+                  return game_model.GameModel.fromJson(data);
+                } catch (e, st) {
+                  print('Failed to deserialize available game ${doc.id}: $e');
+                  print(st);
+                  return null;
+                }
+              })
+              .whereType<game_model.GameModel>()
+              .toList();
         });
   }
 
