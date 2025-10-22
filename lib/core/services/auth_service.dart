@@ -1,5 +1,4 @@
 // services/auth_service.dart
-import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -139,7 +138,7 @@ class AuthRepository {
 
   // Create user document in Firestore
   Future<void> _createUserDocument(User user, String displayName) async {
-    final userModel = UserModel(
+    final userModel = UserModel.create(
       id: user.uid,
       email: user.email ?? '',
       displayName: displayName,

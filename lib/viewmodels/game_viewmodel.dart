@@ -1,6 +1,5 @@
 // lib/viewmodels/game_viewmodel.dart
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../core/services/game_service.dart';
 
 part 'game_viewmodel.g.dart';

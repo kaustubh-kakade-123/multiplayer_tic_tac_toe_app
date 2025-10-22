@@ -1,5 +1,4 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../core/services/matchmaking_service.dart';
 
 part 'matchmaking_viewmodel.g.dart';

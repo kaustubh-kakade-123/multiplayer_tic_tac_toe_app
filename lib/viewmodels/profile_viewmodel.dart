@@ -1,6 +1,5 @@
 // lib/viewmodels/profile_viewmodel.dart
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../core/services/score_service.dart';
 import '../models/score_model.dart';
 

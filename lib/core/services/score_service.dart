@@ -64,7 +64,7 @@ class ScoreService {
     final totalGames = user.wins + user.losses + user.draws;
     final winRate = totalGames > 0 ? user.wins / totalGames : 0.0;
 
-    return ScoreModel(
+    return ScoreModel.create(
       userId: user.id,
       displayName: user.displayName,
       wins: user.wins,

@@ -1,6 +1,5 @@
 // lib/viewmodels/auth_viewmodel.dart
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../core/services/auth_service.dart';
 
 part 'auth_viewmodel.g.dart';

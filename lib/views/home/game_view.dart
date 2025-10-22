@@ -282,7 +282,7 @@ class GameView extends ConsumerWidget {
     User? currentUser,
     bool isCurrentPlayerTurn,
   ) {
-    String statusText;
+    String statusText = '';
     Color statusColor = Colors.blue;
 
     switch (game.status) {
