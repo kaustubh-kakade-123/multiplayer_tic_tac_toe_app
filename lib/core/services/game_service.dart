@@ -63,12 +63,14 @@ class GameService {
     final user = _auth.currentUser;
     if (user == null) throw 'User not authenticated';
 
+    print('createGame called by user=${user.uid}');
+
     final gameId = _uuid.v4();
 
     // Create empty 3x3 board for GameModel (2D array)
     final emptyBoard2D = List.generate(3, (_) => List.generate(3, (_) => ''));
 
-    final game = game_model.GameModel(
+    final game = game_model.GameModel.create(
       id: gameId,
       player1Id: user.uid,
       player1Name: user.displayName ?? 'Player 1',
@@ -83,7 +85,15 @@ class GameService {
     final gameData = game.toJson();
     gameData['board'] = _boardToFlat(emptyBoard2D);
 
-    await _firestore.collection('games').doc(gameId).set(gameData);
+    try {
+      await _firestore.collection('games').doc(gameId).set(gameData);
+      print('createGame succeeded: gameId=$gameId by user=${user.uid}');
+    } catch (e, st) {
+      // Log more context to help debugging when Firestore write fails
+      print('createGame failed for gameId=$gameId, user=${user.uid}: $e');
+      print(st);
+      rethrow;
+    }
 
     return gameId;
   }
@@ -234,14 +244,14 @@ class GameService {
     });
 
     // Record move
-    final move = move_model.MoveModel(
+    final move = move_model.MoveModel.create(
       gameId: gameId,
       playerId: user.uid,
       row: row,
       col: col,
       player: game.currentTurn == game_model.Player.x
-          ? move_model.Player.x
-          : move_model.Player.o,
+          ? game_model.Player.x
+          : game_model.Player.o,
       timestamp: DateTime.now(),
     );
 
@@ -355,10 +365,18 @@ class GameService {
             // Convert flat board to 2D for GameModel
             final data = doc.data();
             final flatBoard = List<String>.from(data['board']);
+
+            //Convert flat array into 2D array
             data['board'] = _boardTo2D(flatBoard);
 
-            return game_model.GameModel.fromJson(data);
-          }).toList();
+            try {
+              return game_model.GameModel.fromJson(data);
+            } catch (e, st) {
+              print('Failed to deserialize available game ${doc.id}: $e');
+              print(st);
+              return null;
+            }
+          }).whereType<game_model.GameModel>().toList();
         });
   }
 
@@ -394,43 +412,6 @@ class GameService {
       print('Cleaned up corrupted games');
     } catch (e) {
       print('Error cleaning up games: $e');
-    }
-  }
-}
-
-// Game View Model
-final gameViewModelProvider =
-    StateNotifierProvider.family<GameViewModel, AsyncValue<String?>, String>((
-      ref,
-      gameId,
-    ) {
-      return GameViewModel(ref.read(gameServiceProvider), gameId);
-    });
-
-class GameViewModel extends StateNotifier<AsyncValue<String?>> {
-  GameViewModel(this._gameService, this.gameId)
-    : super(const AsyncValue.data(null));
-
-  final GameService _gameService;
-  final String gameId;
-
-  Future<void> makeMove(int row, int col) async {
-    state = const AsyncValue.loading();
-    try {
-      await _gameService.makeMove(gameId, row, col);
-      state = const AsyncValue.data('Move made successfully');
-    } catch (e) {
-      state = AsyncValue.error(e.toString(), StackTrace.current);
-    }
-  }
-
-  Future<void> abandonGame() async {
-    state = const AsyncValue.loading();
-    try {
-      await _gameService.abandonGame(gameId);
-      state = const AsyncValue.data('Game abandoned');
-    } catch (e) {
-      state = AsyncValue.error(e.toString(), StackTrace.current);
     }
   }
 }

@@ -28,8 +28,6 @@ class _LoginViewState extends ConsumerState<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    final authState = ref.watch(authViewModelProvider);
-
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(

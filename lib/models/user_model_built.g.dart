@@ -1,23 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user_model.dart';
+part of 'user_model_built.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<UserModel> _$userModelSerializer = _$UserModelSerializer();
+Serializer<UserModelBuilt> _$userModelBuiltSerializer =
+    _$UserModelBuiltSerializer();
 
-class _$UserModelSerializer implements StructuredSerializer<UserModel> {
+class _$UserModelBuiltSerializer
+    implements StructuredSerializer<UserModelBuilt> {
   @override
-  final Iterable<Type> types = const [UserModel, _$UserModel];
+  final Iterable<Type> types = const [UserModelBuilt, _$UserModelBuilt];
   @override
-  final String wireName = 'UserModel';
+  final String wireName = 'UserModelBuilt';
 
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    UserModel object, {
+    UserModelBuilt object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     final result = <Object?>[
@@ -63,12 +65,12 @@ class _$UserModelSerializer implements StructuredSerializer<UserModel> {
   }
 
   @override
-  UserModel deserialize(
+  UserModelBuilt deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = UserModelBuilder();
+    final result = UserModelBuiltBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -155,7 +157,7 @@ class _$UserModelSerializer implements StructuredSerializer<UserModel> {
   }
 }
 
-class _$UserModel extends UserModel {
+class _$UserModelBuilt extends UserModelBuilt {
   @override
   final String id;
   @override
@@ -175,10 +177,10 @@ class _$UserModel extends UserModel {
   @override
   final DateTime lastSeen;
 
-  factory _$UserModel([void Function(UserModelBuilder)? updates]) =>
-      (UserModelBuilder()..update(updates))._build();
+  factory _$UserModelBuilt([void Function(UserModelBuiltBuilder)? updates]) =>
+      (UserModelBuiltBuilder()..update(updates))._build();
 
-  _$UserModel._({
+  _$UserModelBuilt._({
     required this.id,
     required this.email,
     required this.displayName,
@@ -190,16 +192,16 @@ class _$UserModel extends UserModel {
     required this.lastSeen,
   }) : super._();
   @override
-  UserModel rebuild(void Function(UserModelBuilder) updates) =>
+  UserModelBuilt rebuild(void Function(UserModelBuiltBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  UserModelBuilder toBuilder() => UserModelBuilder()..replace(this);
+  UserModelBuiltBuilder toBuilder() => UserModelBuiltBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is UserModel &&
+    return other is UserModelBuilt &&
         id == other.id &&
         email == other.email &&
         displayName == other.displayName &&
@@ -229,7 +231,7 @@ class _$UserModel extends UserModel {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'UserModel')
+    return (newBuiltValueToStringHelper(r'UserModelBuilt')
           ..add('id', id)
           ..add('email', email)
           ..add('displayName', displayName)
@@ -243,8 +245,9 @@ class _$UserModel extends UserModel {
   }
 }
 
-class UserModelBuilder implements Builder<UserModel, UserModelBuilder> {
-  _$UserModel? _$v;
+class UserModelBuiltBuilder
+    implements Builder<UserModelBuilt, UserModelBuiltBuilder> {
+  _$UserModelBuilt? _$v;
 
   String? _id;
   String? get id => _$this._id;
@@ -282,9 +285,9 @@ class UserModelBuilder implements Builder<UserModel, UserModelBuilder> {
   DateTime? get lastSeen => _$this._lastSeen;
   set lastSeen(DateTime? lastSeen) => _$this._lastSeen = lastSeen;
 
-  UserModelBuilder();
+  UserModelBuiltBuilder();
 
-  UserModelBuilder get _$this {
+  UserModelBuiltBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _id = $v.id;
@@ -302,57 +305,61 @@ class UserModelBuilder implements Builder<UserModel, UserModelBuilder> {
   }
 
   @override
-  void replace(UserModel other) {
-    _$v = other as _$UserModel;
+  void replace(UserModelBuilt other) {
+    _$v = other as _$UserModelBuilt;
   }
 
   @override
-  void update(void Function(UserModelBuilder)? updates) {
+  void update(void Function(UserModelBuiltBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  UserModel build() => _build();
+  UserModelBuilt build() => _build();
 
-  _$UserModel _build() {
+  _$UserModelBuilt _build() {
     final _$result =
         _$v ??
-        _$UserModel._(
-          id: BuiltValueNullFieldError.checkNotNull(id, r'UserModel', 'id'),
+        _$UserModelBuilt._(
+          id: BuiltValueNullFieldError.checkNotNull(
+            id,
+            r'UserModelBuilt',
+            'id',
+          ),
           email: BuiltValueNullFieldError.checkNotNull(
             email,
-            r'UserModel',
+            r'UserModelBuilt',
             'email',
           ),
           displayName: BuiltValueNullFieldError.checkNotNull(
             displayName,
-            r'UserModel',
+            r'UserModelBuilt',
             'displayName',
           ),
           photoUrl: photoUrl,
           wins: BuiltValueNullFieldError.checkNotNull(
             wins,
-            r'UserModel',
+            r'UserModelBuilt',
             'wins',
           ),
           losses: BuiltValueNullFieldError.checkNotNull(
             losses,
-            r'UserModel',
+            r'UserModelBuilt',
             'losses',
           ),
           draws: BuiltValueNullFieldError.checkNotNull(
             draws,
-            r'UserModel',
+            r'UserModelBuilt',
             'draws',
           ),
           createdAt: BuiltValueNullFieldError.checkNotNull(
             createdAt,
-            r'UserModel',
+            r'UserModelBuilt',
             'createdAt',
           ),
           lastSeen: BuiltValueNullFieldError.checkNotNull(
             lastSeen,
-            r'UserModel',
+            r'UserModelBuilt',
             'lastSeen',
           ),
         );

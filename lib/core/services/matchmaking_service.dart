@@ -9,11 +9,6 @@ final matchmakingServiceProvider = Provider<MatchmakingService>((ref) {
   return MatchmakingService(ref.read(gameServiceProvider));
 });
 
-final matchmakingViewModelProvider =
-    StateNotifierProvider<MatchmakingViewModel, AsyncValue<String?>>((ref) {
-      return MatchmakingViewModel(ref.read(matchmakingServiceProvider));
-    });
-
 class MatchmakingService {
   MatchmakingService(this._gameService);
 
@@ -68,36 +63,5 @@ class MatchmakingService {
     // This would require a more complex query in practice
     // For now, we'll use the basic matchmaking
     return await findMatch();
-  }
-}
-
-class MatchmakingViewModel extends StateNotifier<AsyncValue<String?>> {
-  MatchmakingViewModel(this._matchmakingService)
-    : super(const AsyncValue.data(null));
-
-  final MatchmakingService _matchmakingService;
-
-  Future<String?> findMatch() async {
-    state = const AsyncValue.loading();
-    try {
-      final gameId = await _matchmakingService.findMatch();
-      state = AsyncValue.data(gameId);
-      return gameId;
-    } catch (e) {
-      state = AsyncValue.error(e.toString(), StackTrace.current);
-      return null;
-    }
-  }
-
-  Future<String?> findRankedMatch() async {
-    state = const AsyncValue.loading();
-    try {
-      final gameId = await _matchmakingService.findRankedMatch();
-      state = AsyncValue.data(gameId);
-      return gameId;
-    } catch (e) {
-      state = AsyncValue.error(e.toString(), StackTrace.current);
-      return null;
-    }
   }
 }
